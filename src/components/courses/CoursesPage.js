@@ -58,6 +58,7 @@ function mapDispatchToProps(dispatch) {
     //createCourse: (course) => dispatch(courseActions.createCourse(course)),
     actions: bindActionCreators(courseActions, dispatch), // return them all wrapped in dispatch
   };
+  //createCourse: courseActions.createCourse,// as an object each action is bound to dispatch
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
