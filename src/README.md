@@ -86,3 +86,12 @@ map, filter, reduce, concat, spread
 ```
 
 ## Setup local api
+
+## Handle async
+
+redux-thunk
+redux-promise
+redux-observable
+redux-saga
+
+All your actions stay consistent
