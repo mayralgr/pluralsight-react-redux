@@ -84,3 +84,5 @@ push and pop mutate the arrays, must clone first or use
 ```Javascript
 map, filter, reduce, concat, spread
 ```
+
+## Setup local api
