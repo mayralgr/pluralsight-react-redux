@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as authorActions from "../../redux/actions/authorActions";
+import * as authorActions from "../../redux/actions/authorActions"; // could use named import but confusing will be added when passed to props
+// note that props has precedent to the module import
 import * as courseActions from "../../redux/actions/courseActions";
 import PropTypes from "prop-types";
 
