@@ -7,6 +7,7 @@ import { loadCourses, saveCourse } from "../../redux/actions/courseActions";
 import PropTypes, { func } from "prop-types";
 import { newCourse } from "../../../tools/mockData";
 import CourseForm from "./CourseForm";
+import Spinner from "../common/Spinner";
 function ManageCoursePage({
   courses,
   authors,
@@ -48,16 +49,16 @@ function ManageCoursePage({
     });
   }
 
-  return (
-    <>
-      <CourseForm
-        onChange={handleChange}
-        course={course}
-        errors={errors}
-        authors={authors}
-        onSave={handleSave}
-      />
-    </>
+  return authors.length === 0 || course.length === 0 ? (
+    <Spinner />
+  ) : (
+    <CourseForm
+      onChange={handleChange}
+      course={course}
+      errors={errors}
+      authors={authors}
+      onSave={handleSave}
+    />
   );
 }
 
