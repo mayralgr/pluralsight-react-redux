@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { loadAuthors } from "../../redux/actions/authorActions"; // could use named import but confusing will be added when passed to props
 // note that props has precedent to the module import
 import { loadCourses, saveCourse } from "../../redux/actions/courseActions";
-import PropTypes from "prop-types";
+import PropTypes, { func } from "prop-types";
 import { newCourse } from "../../../tools/mockData";
 import CourseForm from "./CourseForm";
 function ManageCoursePage({
@@ -23,13 +23,15 @@ function ManageCoursePage({
       loadCourses().catch((error) => {
         alert("Error while loading courses " + error);
       });
+    } else {
+      setCourse({ ...props.course });
     }
     if (authors.length === 0) {
       loadAuthors().catch((error) => {
         alert("Error while loading authors " + error);
       });
     }
-  }, []);
+  }, [props.course]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -69,9 +71,18 @@ ManageCoursePage.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
+export function getCourseBySlug(courses, slug) {
+  return courses.find((course) => course.slug === slug) || null;
+}
+
+function mapStateToProps(state, ownProps) {
+  const slug = ownProps.match.params.slug;
+  const course =
+    slug && state.courses.length > 0
+      ? getCourseBySlug(state.courses, slug)
+      : newCourse;
   return {
-    course: newCourse,
+    course,
     courses: state.courses,
     authors: state.authors,
   };
