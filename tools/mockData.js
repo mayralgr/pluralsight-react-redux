@@ -85,4 +85,9 @@ const newCourse = {
 };
 
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
-export { newCourse, courses, authors };
+// eslint-disable-next-line no-undef
+module.exports = {
+  newCourse,
+  courses,
+  authors,
+};
