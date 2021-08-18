@@ -4,8 +4,19 @@
   "scripts": {
     "start": "run-p start:dev start:api",
     "start:dev": "webpack-dev-server --config webpack.config.dev.js --port 3000",
-    "prestart:api":"node tools/createMockDB.js",
-    "start:api":"node tools/apiServer.js"
+    "prestart:api": "node tools/createMockDB.js",
+    "start:api": "node tools/apiServer.js",
+    "test": "jest --watch"
+  },
+  "jest": {
+    "setupFiles": [
+      "./tools/testSetup.js"
+    ],
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/tools/styleMock.js"
+    }
   },
   "dependencies": {
     "bootstrap": "4.3.1",
@@ -22,13 +33,14 @@
   },
   "devDependencies": {
     "@babel/core": "7.3.4",
+    "@testing-library/react": "^12.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "8.0.5",
     "babel-preset-react-app": "7.0.2",
     "css-loader": "2.1.1",
     "cssnano": "4.1.10",
-    "enzyme": "3.9.0",
-    "enzyme-adapter-react-16": "1.11.2",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "eslint": "5.15.2",
     "eslint-loader": "2.1.2",
     "eslint-plugin-import": "2.16.0",
